@@ -1,9 +1,9 @@
 import '../App.css';
 
-export default function Signup() {
+export default function Login() {
     return (
         <div className="card">
-            <h1>Signup</h1>
+            <h1>Login</h1>
         </div>
     )
 }

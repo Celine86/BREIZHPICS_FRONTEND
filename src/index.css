@@ -14,5 +14,4 @@ body {
   background-image: url("./img/drapeau.svg");  
   min-height: 100vh;
   background-size: cover;
-  justify-content: center;
 }
