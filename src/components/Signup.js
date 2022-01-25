@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Axios from "axios";
 import '../App.css';
 import './Register.css';
@@ -11,7 +11,7 @@ export default function Signup() {
     const [password, setPassword] = useState("");
     const [verifyPassword, setVerifyPassword] = useState("");
     const [loginStatus, setLoginStatus] = useState("");
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const signup = async event => {
         event.preventDefault();
@@ -31,8 +31,10 @@ export default function Signup() {
                     .then((response) => {
                         localStorage.setItem("token", response.data.token)
                         localStorage.setItem("userId",response.data.userId)
+                        localStorage.setItem("username", response.data.username)
                         setLoginStatus(response.data.message)
-                        //navigate("/home");
+                        navigate("/");
+                        window.location.reload();
                         //console.log(response.data.message)
                     }) 
                 }

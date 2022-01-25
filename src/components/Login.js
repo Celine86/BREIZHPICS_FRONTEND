@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Axios from "axios";
 import '../App.css';
 import './Register.css';
@@ -9,7 +9,7 @@ export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loginStatus, setLoginStatus] = useState("");
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const login = async event => {
         event.preventDefault();
@@ -21,10 +21,12 @@ export default function Login() {
             .then((response) => {
                 localStorage.setItem("token", response.data.token)
                 localStorage.setItem("userId",response.data.userId)
+                localStorage.setItem("username", response.data.username)
                 setLoginStatus(response.data.message)
-                //console.log(response.data.message)
-                //navigate("/home");
-            }) 
+                navigate("/");
+                window.location.reload();
+                //console.log(response.data)
+            })
         } catch(error) {
             setLoginStatus(error.response.data.message)
             //console.log(error.response.data.error);
