@@ -1,0 +1,16 @@
+.cardregister {
+    margin: 2% auto 0%;
+    max-width: 20rem;
+    min-width: 10%;
+    max-height: 30%;
+    color: #000;
+    background-color: rgba(233, 230, 230, 0.95);
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+.cardregister h1 {
+    text-align: center;
+}
+.cardregister h5 {
+    color: rgb(255, 0, 0);
+}

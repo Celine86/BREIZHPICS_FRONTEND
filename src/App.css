@@ -1,18 +1,43 @@
 .App {
   margin: auto;
+  min-height: 68vh;
 }
-
 .card {
   margin: 2% auto 0%;
-  max-width: 30rem;
+  max-width: 50rem;
   min-width: 10%;
   max-height: 30%;
   color: #000;
-  background-color: rgba(233, 230, 230);
+  background-color: rgba(233, 230, 230, 0.95);
   border-radius: 1rem;
   padding: 0.5rem;
 }
-
 .card h1 {
   text-align: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.form input {
+  background-color: #fff;
+  margin: 0.25rem 0rem;
+  width: 10rem;
+} 
+.form label {
+  margin: 0.5rem 0rem 0rem 0rem;
+}
+.form button {
+  font-size: 1rem;
+  background-color: #fff;
+  width: 10rem;
+  border-radius: 1rem;
+  margin: 1rem auto;
+  padding: 0.5rem;
+}
+img {
+  width: 90%;
+  height: auto;
 }
