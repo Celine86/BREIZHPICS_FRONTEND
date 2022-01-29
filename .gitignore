@@ -24,3 +24,4 @@ yarn-error.log*
 
 # add by LIline
 README.md.old
+.env
