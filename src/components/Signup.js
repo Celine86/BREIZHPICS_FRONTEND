@@ -33,19 +33,16 @@ export default function Signup() {
                         localStorage.setItem("userId",response.data.userId)
                         localStorage.setItem("username", response.data.username)
                         setLoginStatus(response.data.message)
-                        navigate("/");
+                        navigate("/myprofil");
                         window.location.reload();
-                        //console.log(response.data.message)
                     }) 
                 }
             })
             .catch(error => {
                 setLoginStatus(error.response.data.error)
-                //console.log(error.response.data.error)
             }) 
         } catch (error) {
             setLoginStatus(error.response.data.error)
-            //console.log(error);
         }
     }
 
@@ -61,7 +58,7 @@ export default function Signup() {
                 <input type="password" placeholder="Mot de passe" onChange={(e) => { setPassword(e.target.value); }}></input>
                 <label>Confirmer le mot de passe: </label>
                 <input type="password" placeholder="Confirmer le mot de passe" onChange={(e) => { setVerifyPassword(e.target.value); }}></input>
-                <button onClick={signup}>Signup</button>
+                <button onClick={signup}>S'inscrire</button>
                 <h5>{loginStatus}</h5>
             </form>
         </div>

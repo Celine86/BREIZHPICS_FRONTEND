@@ -23,25 +23,26 @@ export default function Login() {
                 localStorage.setItem("userId",response.data.userId)
                 localStorage.setItem("username", response.data.username)
                 setLoginStatus(response.data.message)
-                navigate("/");
+                navigate("/myprofil");
                 window.location.reload();
-                //console.log(response.data)
             })
+            .catch(error => {
+                setLoginStatus(error.response.data.error)
+            }) 
         } catch(error) {
             setLoginStatus(error.response.data.message)
-            //console.log(error.response.data.error);
         }
     }
     
     return (
         <div className="cardregister">
-            <h1>Login</h1>
+            <h1>Connexion</h1>
             <form className="form">
                 <label>Pseudonyme: </label>
                 <input type="text" placeholder="Pseudonyme" onChange={(e) => { setUsername(e.target.value); }}></input>
                 <label>Mot de passe: </label>
                 <input type="password" placeholder="Mot de passe" onChange={(e) => { setPassword(e.target.value); }}></input>
-                <button onClick={login}>Login</button>
+                <button onClick={login}>Se Connecter</button>
                 <h5>{loginStatus}</h5>
             </form>
         </div>
