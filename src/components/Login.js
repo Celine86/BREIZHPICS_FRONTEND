@@ -19,12 +19,14 @@ export default function Login() {
                 password: password,
             })
             .then((response) => {
+                console.log(response.data)
                 localStorage.setItem("token", response.data.token)
                 localStorage.setItem("userId",response.data.userId)
                 localStorage.setItem("username", response.data.username)
+                localStorage.setItem("email", response.data.email)
                 setLoginStatus(response.data.message)
                 navigate("/myprofil");
-                window.location.reload();
+                //window.location.reload();
             })
             .catch(error => {
                 setLoginStatus(error.response.data.error)

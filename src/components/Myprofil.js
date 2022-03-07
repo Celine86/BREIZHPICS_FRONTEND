@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import '../App.css';
 import './Myprofil.css';
@@ -11,7 +12,7 @@ export default function Myprofil() {
 
     useEffect(() => {
         if( localStorage.getItem("username") !== null ) {
-            Axios.get(`${process.env.REACT_APP_API_URL}users/profils/` + localStorage.getItem("userId"), { headers: {"Authorization": "Bearer " + localStorage.getItem("token")} })
+            Axios.get(`${process.env.REACT_APP_API_URL}users/profils/` + localStorage.getItem("userId"), { headers: {Authorization: "Bearer " + localStorage.getItem("token")} })
             .then((response) => {
                 setUsername(response.data.userInfos.username);
                 setUserpicture(response.data.userInfos.avatar);
@@ -26,8 +27,20 @@ export default function Myprofil() {
             <div className="inline">
                 <img className="avatar" alt="mon avatar" src={ userpicture }/>
                 <div className="heightcenter">
-                    <h4>{ useremail }</h4>   
+                    <h4>Pseudonyme : { username }</h4>
+                    <h4>E-mail : { useremail }</h4>   
                 </div>
+            </div>
+            <div>
+            <Link to={{ pathname: `/myprofil/modify/account/${localStorage.getItem("userId")}` }}>
+                <button>Modifier mon compte</button>
+            </Link> 
+            <Link to={{ pathname: `/myprofil/modify/email/${localStorage.getItem("userId")}` }}>
+                <button>Modifier mon email</button>
+            </Link>            
+            <Link to={{ pathname: `/myprofil/modify/pswd/${localStorage.getItem("userId")}` }}>
+                <button>Modifier mon mot de passe</button>
+            </Link>
             </div>
         </div>
     )  

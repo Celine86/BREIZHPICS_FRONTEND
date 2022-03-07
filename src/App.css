@@ -37,6 +37,14 @@
   margin: 1rem auto;
   padding: 0.5rem;
 }
+.form .btnfile {
+  font-size: 0.95rem;
+  background-color: #fff;
+  width: 10rem;
+  border-radius: 0rem;
+  margin: 1rem auto;
+  padding: 0rem 0.5rem;
+}
 img {
   width: 90%;
   height: auto;
@@ -48,4 +56,7 @@ img {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
+h5 {
+  color: red;
 }
