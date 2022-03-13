@@ -8,7 +8,9 @@ export default function Login() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [loginStatus, setLoginStatus] = useState("");
+    const [loginStatusMsg, setLoginStatusMsg] = useState("");
+    const [loginStatusError, setLoginStatusError] = useState("");
+    const [visible, setVisible] = useState(false);
     const navigate = useNavigate();
 
     const login = async event => {
@@ -24,15 +26,20 @@ export default function Login() {
                 localStorage.setItem("userId",response.data.userId)
                 localStorage.setItem("username", response.data.username)
                 localStorage.setItem("email", response.data.email)
-                setLoginStatus(response.data.message)
-                navigate("/myprofil");
+                setLoginStatusMsg(response.data.message)
+                setTimeout(() => {navigate("/myprofil"); }, 2000);
+                //navigate("/myprofil");
                 //window.location.reload();
             })
             .catch(error => {
-                setLoginStatus(error.response.data.error)
+                setVisible(true);
+                setLoginStatusError(error.response.data.error)
+                setTimeout(() => {window.location.reload() }, 1500);
             }) 
         } catch(error) {
-            setLoginStatus(error.response.data.message)
+            setVisible(true);
+            setLoginStatusError(error.response.data.message)
+            setTimeout(() => {window.location.reload() }, 1500);
         }
     }
     
@@ -45,7 +52,8 @@ export default function Login() {
                 <label>Mot de passe: </label>
                 <input type="password" placeholder="Mot de passe" onChange={(e) => { setPassword(e.target.value); }}></input>
                 <button onClick={login}>Se Connecter</button>
-                <h5>{loginStatus}</h5>
+                { visible || <h5 className="msg">{loginStatusMsg}</h5> }
+                { visible && <h5 className="error">{loginStatusError}</h5> }
             </form>
         </div>
     )

@@ -1,16 +1,18 @@
 .avatar {
-    width: 30%;
+    width: 20rem;
     height: auto;
+    margin: 1rem auto 0rem auto;
 }
-
 .heightcenter {
     margin: auto 1rem;
 }
-
 .btnfile {
     font-size: 1rem;
     background-color: #fff;
     width: 10rem;
     margin: 1rem auto;
     padding: 0.5rem;
+}
+.bio {
+    max-width: 20rem;
 }

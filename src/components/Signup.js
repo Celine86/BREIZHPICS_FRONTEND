@@ -10,7 +10,9 @@ export default function Signup() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [verifyPassword, setVerifyPassword] = useState("");
-    const [loginStatus, setLoginStatus] = useState("");
+    const [modifySignupMsg, setSignupMsg] = useState("");
+    const [modifySignupError, setSignupError] = useState("");
+    const [visible, setVisible] = useState(false);
     const navigate = useNavigate();
 
     const signup = async event => {
@@ -32,17 +34,21 @@ export default function Signup() {
                         localStorage.setItem("token", response.data.token)
                         localStorage.setItem("userId",response.data.userId)
                         localStorage.setItem("username", response.data.username)
-                        setLoginStatus(response.data.message)
-                        navigate("/myprofil");
-                        window.location.reload();
+                        setSignupMsg(response.data.message)
+                        setTimeout(() => {navigate("/myprofil"); }, 2000);
+                        //window.location.reload();
                     }) 
                 }
             })
             .catch(error => {
-                setLoginStatus(error.response.data.error)
+                setVisible(true);
+                setSignupError(error.response.data.error);
+                setTimeout(() => {window.location.reload() }, 2000);
             }) 
         } catch (error) {
-            setLoginStatus(error.response.data.error)
+            setVisible(true);
+            setSignupError(error.response.data.error);
+            setTimeout(() => {window.location.reload() }, 2000);
         }
     }
 
@@ -59,7 +65,8 @@ export default function Signup() {
                 <label>Confirmer le mot de passe: </label>
                 <input type="password" placeholder="Confirmer le mot de passe" onChange={(e) => { setVerifyPassword(e.target.value); }}></input>
                 <button onClick={signup}>S'inscrire</button>
-                <h5>{loginStatus}</h5>
+                { visible || <h5 className="msg">{modifySignupMsg}</h5> }
+                { visible && <h5 className="error">{modifySignupError}</h5> }
             </form>
         </div>
     )
