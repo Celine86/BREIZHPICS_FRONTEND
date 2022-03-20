@@ -2,25 +2,21 @@
     background-color: rgba(41, 41, 41, 0.8);
     margin-top: 0rem;
     padding: 1rem 0rem;
+    text-align: center;
 }
-
 h1 {
     padding: 0.25rem 0rem;
 }
-
 div {
     padding: 0.25rem 0rem;
 }
-
 a {
     color: #fff;
 }
-
 .navIcon {
     width: 1.5rem;
     height: 1.5rem;
 }
-
 .navIcon:hover {
     cursor: pointer;
 }
