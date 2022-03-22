@@ -69,7 +69,7 @@ export default function Modifymyaccount() {
             <label>Pseudonyme</label>
             <input type="text" placeholder={userusername} defaultValue={userusername} name="userusername" onChange={(e) => { setNewUserusername(e.target.value); }} />
             <label>Biographie</label>
-            <textarea rows="4" cols="30" maxlength="250" defaultValue={userbio} onChange={(e) => { setNewUserbio(e.target.value); }} ></textarea>
+            <textarea rows="4" cols="30" maxLength="250" defaultValue={userbio} onChange={(e) => { setNewUserbio(e.target.value); }} ></textarea>
             <label>Avatar</label>
             <img className="avatar" alt="mon avatar" src={ userpicture } />
             <label htmlFor="filePicker" className='btn'>Choisir un nouvel avatar</label>
