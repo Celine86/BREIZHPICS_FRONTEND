@@ -17,6 +17,7 @@ export default function Modifymyaccount() {
   const [userbio, setUserbio] = useState("");
   const [newuserbio, setNewUserbio] = useState("");
   const [imageUrl, setImageUrl] = useState(null);
+  const [userAvatar, setUserAvatar] = useState(false);
 
   const token = localStorage.getItem('token')
   const [modifyStatusMsg, setModifyStatusMsg] = useState("");
@@ -71,10 +72,10 @@ export default function Modifymyaccount() {
             <label>Biographie</label>
             <textarea rows="4" cols="30" maxLength="250" defaultValue={userbio} onChange={(e) => { setNewUserbio(e.target.value); }} ></textarea>
             <label>Avatar</label>
-            <img className="avatar" alt="mon avatar" src={ userpicture } />
+            { userAvatar || <img className="avatar" alt="mon avatar" src={ userpicture } /> }
             <label htmlFor="filePicker" className='btn'>Choisir un nouvel avatar</label>
-            <img className="avatar" alt="Futur avatar" src={ imageUrl } />
-            <input id="filePicker" type="file" style={{display:'none'}} onChange={(e) => { setNewUserpicture(e.target.files[0]); }}></input>       
+            { userAvatar && <img className="avatar" alt="Futur avatar" src={ imageUrl } /> }
+            <input id="filePicker" type="file" style={{display:'none'}} onInput={(e) => {setUserAvatar(true)} } onChange={(e) => { setNewUserpicture(e.target.files[0]) }}></input>       
             <button onClick={ modify }>Enregistrer</button>
             { visible || <h5 className="msg">{modifyStatusMsg}</h5> }
             { visible && <h5 className="error">{modifyStatusError}</h5> }
