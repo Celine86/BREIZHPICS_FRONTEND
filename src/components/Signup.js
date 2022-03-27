@@ -36,7 +36,6 @@ export default function Signup() {
                         localStorage.setItem("username", response.data.username)
                         setSignupMsg(response.data.message)
                         setTimeout(() => {navigate("/myprofil"); }, 2000);
-                        //window.location.reload();
                     }) 
                 }
             })

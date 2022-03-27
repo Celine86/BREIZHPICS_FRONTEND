@@ -27,9 +27,7 @@ export default function Login() {
                 localStorage.setItem("username", response.data.username)
                 localStorage.setItem("email", response.data.email)
                 setLoginStatusMsg(response.data.message)
-                setTimeout(() => {navigate("/myprofil"); }, 2000);
-                //navigate("/myprofil");
-                //window.location.reload();
+                setTimeout(() => {navigate("/pics"); }, 2000);
             })
             .catch(error => {
                 setVisible(true);
