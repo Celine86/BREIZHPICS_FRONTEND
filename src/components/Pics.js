@@ -11,12 +11,19 @@ export default function Pics() {
 
   const token = localStorage.getItem('token');
   const [visible, setVisible] = useState(true);
+  
+  /*const [disabled, setDisabled] = useState(true);
 
+  if(localStorage.getItem("username") !== null){
+    setDisabled(false);
+  }*/
+  
   const [allpics, setPics] = useState([]);
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   //const [errorMsg, setErrorMsg] = useState("");
   const [responseMsg, setResponseMsg] = useState("");
+
    
   const fetchPics = async () => {
     const { data } = await Axios.get(`${process.env.REACT_APP_API_URL}pics/all`)
@@ -61,6 +68,7 @@ export default function Pics() {
               <img className="pic" src={pic.picUrl} alt={pic.location}/>
                 <div className="inlinepics">
                   { visible &&
+                    /* <button disabled={disabled}> */
                     <img className='navIcon' src={ like } alt="like" onClick={(e) => {
                       e.preventDefault(); 
                       Axios.post(`${process.env.REACT_APP_API_URL}pics/like/${pic.id}`, 
@@ -84,10 +92,10 @@ export default function Pics() {
                 </div>
                 <p className="location">{pic.location}</p>
                 <p className="description">{pic.description}</p>
-                {visible || <div className="inlinepics">
+                <div className="inlinepics">
                   <p className="username">{pic.User.username}</p>
                   <img className="useravatar" src={pic.User.avatar} alt={pic.User.username}/>
-                </div> }
+                </div>
             </div>
           ))}
         </div>

@@ -6,6 +6,7 @@ import home from '../img/home_white.png';
 import logoutimg from '../img/logout_white.png'
 import profil from '../img/profil_white.png';
 import pics from '../img/pics_white.png';
+import addpic from '../img/addpic_white.png';
 
 export default function Header () {
 
@@ -31,6 +32,14 @@ export default function Header () {
         window.location.reload();
     });
 
+    const goToPics = (() => {
+        if(window.location.pathname === "/pics"){
+            window.location.reload()
+        } else {
+            navigate("/pics")
+        }
+    })
+
 
     return (
         <div className="header">
@@ -38,8 +47,8 @@ export default function Header () {
             { visible && <div><h4>Bonjour { username } </h4></div> }      
             { visible || <div><Link to="/login">Se Connecter</Link> | <Link to="/signup">S'inscrire</Link></div> }
             <div className="inline">
-                <div><Link to="/"><img className='navIcon' src={home} alt="home"/></Link>|<Link to="/pics"><img className='navIcon' src={pics} alt="naviguer"/></Link></div>
-                { visible && <div>||<img className='navIcon' src={ logoutimg } onClick={ logout } alt="logout"/>|<Link to="/myprofil"><img className='navIcon' src={profil} alt="mon profil"/></Link></div> }
+                <div><Link to="/"><img className='navIcon' src={home} alt="home"/></Link>|<img className='navIcon' src={pics} onClick={ goToPics } alt="naviguer"/></div>
+                { visible && <div>||<Link to="/pic/handle"><img className='navIcon' src={addpic} alt="mon profil"/></Link>|<Link to="/myprofil"><img className='navIcon' src={profil} alt="mon profil"/></Link>|<img className='navIcon' src={ logoutimg } onClick={ logout } alt="logout"/></div> }
             </div>            
         </div>
     )

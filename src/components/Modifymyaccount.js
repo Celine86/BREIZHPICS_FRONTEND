@@ -40,27 +40,27 @@ export default function Modifymyaccount() {
 
   const modify = event => {
     event.preventDefault();
-        const formData = new FormData()
-        formData.set("file", newuserpicture)
-        formData.set("username", newuserusername)
-        formData.set("bio", newuserbio)
-        Axios.put(`${process.env.REACT_APP_API_URL}users/profils/modifyAccount/${id}`, 
-            formData,
-          { headers: {
-            'Content-Type': 'multipart/form-data',
-            "Authorization": "Bearer " + token 
-            }
-          }
-        )
-        .then((response) => {
-          setModifyStatusMsg(response.data.message);
-          setTimeout(() => {navigate("/myprofil"); }, 2000);      
-        }) 
-        .catch((error) => { 
-          setVisible(true);
-          setModifyStatusError(error.response.data.error) 
-          setTimeout(() => {window.location.reload() }, 1500);
-        })
+    const formData = new FormData()
+    formData.set("file", newuserpicture)
+    formData.set("username", newuserusername)
+    formData.set("bio", newuserbio)
+    Axios.put(`${process.env.REACT_APP_API_URL}users/profils/modifyAccount/${id}`, 
+        formData,
+      { headers: {
+        'Content-Type': 'multipart/form-data',
+        "Authorization": "Bearer " + token 
+        }
+      }
+    )
+    .then((response) => {
+      setModifyStatusMsg(response.data.message);
+      setTimeout(() => {navigate("/myprofil"); }, 2000);      
+    }) 
+    .catch((error) => { 
+      setVisible(true);
+      setModifyStatusError(error.response.data.error) 
+      setTimeout(() => {window.location.reload() }, 1500);
+    })
   }
 
   return (

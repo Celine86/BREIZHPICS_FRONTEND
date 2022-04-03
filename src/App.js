@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Pics from './components/Pics';
 import Pic from './components/Pic';
+import HandlePic from './components/HandlePic';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Myprofil from './components/Myprofil';
@@ -22,7 +23,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/pics" element ={<Pics />}/>
-          <Route path="/pic" element ={<Pic />}/>
+          <Route path="/pic/:id" element ={<Pic />}/>
+          <Route path="/pic/handle" element = {<HandlePic />} />
+          <Route path="/pic/handle/:id" element = {<HandlePic />} />
           <Route path="/login" element={<Login />}/>
           <Route path="/signup" element={<Signup />}/>
           <Route path="/myprofil" element={<Myprofil />}/>
