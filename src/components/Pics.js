@@ -11,12 +11,13 @@ export default function Pics() {
 
   const token = localStorage.getItem('token');
   const [visible, setVisible] = useState(true);
-  
-  /*const [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(false);
 
-  if(localStorage.getItem("username") !== null){
-    setDisabled(false);
-  }*/
+  useEffect(() => {
+    if(localStorage.getItem("username") === null){
+      setDisabled(true);
+    }
+  },[])
   
   const [allpics, setPics] = useState([]);
   const [location, setLocation] = useState("");
@@ -24,6 +25,11 @@ export default function Pics() {
   //const [errorMsg, setErrorMsg] = useState("");
   const [responseMsg, setResponseMsg] = useState("");
 
+
+  /* countLike = () => {
+    for(let i = 0; i < pic.Likes.length; i++){
+      console.log(pic.Likes[i]);
+  }}*/
    
   const fetchPics = async () => {
     const { data } = await Axios.get(`${process.env.REACT_APP_API_URL}pics/all`)
@@ -67,8 +73,9 @@ export default function Pics() {
             <div className="polaroid" key={pic.id}>
               <img className="pic" src={pic.picUrl} alt={pic.location}/>
                 <div className="inlinepics">
-                  { visible &&
-                    /* <button disabled={disabled}> */
+                  { disabled && visible && <img className='navIcondisabled' src={ like } alt="like"></img> }
+                  { disabled || visible &&
+                  <div>
                     <img className='navIcon' src={ like } alt="like" onClick={(e) => {
                       e.preventDefault(); 
                       Axios.post(`${process.env.REACT_APP_API_URL}pics/like/${pic.id}`, 
@@ -82,9 +89,18 @@ export default function Pics() {
                       })
                     }}>
                     </img>
+                  </div>
                   }
                   { visible && 
+                  <div>
+                    { /* <p>{ //console.log(pic.Likes) 
+                      pic.Likes.map((like) => (
+                        console.log(like.UserId)
+                      ))
+                      }
+                    </p> */ }
                     <p>{pic.Likes.length}</p>
+                  </div>
                   }
                   { visible ||
                     <Link to="/"><img className='navIcon' src={info} alt="plus d'infos"/></Link>

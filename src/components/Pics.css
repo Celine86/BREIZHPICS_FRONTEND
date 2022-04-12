@@ -54,9 +54,11 @@
 .navIcon:hover {
     cursor: pointer;
 }
-.navIcon:disabled {
-    pointer-events: none;
-    cursor: default;
+.navIcondisabled {
+    width: 1.5rem;
+    height: 1.5rem;
+    align-self: center;
+    color: grey;    
 }
 .searchform {
     background-color: rgba(41, 41, 41, 0.8);
