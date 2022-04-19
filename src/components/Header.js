@@ -28,6 +28,7 @@ export default function Header () {
         localStorage.removeItem("token")
         localStorage.removeItem("userId")
         localStorage.removeItem("username")
+        localStorage.removeItem("email")
         navigate("/");
         window.location.reload();
     });
