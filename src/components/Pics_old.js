@@ -1,20 +1,40 @@
+/*
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import './Pics.css';
+import like from '../img/like_black.png';
 import search from '../img/search_white.png';
 import refresh from '../img/refresh_white.png';
 import info from '../img/information_black.png'
 
 export default function Pics() {
 
+  const token = localStorage.getItem('token');
+  const [visible, setVisible] = useState(true);
+  const [disabled, setDisabled] = useState(false);
+
+  useEffect(() => {
+    if(localStorage.getItem("username") === null){
+      setDisabled(true);
+    }
+  },[])
+  
   const [allpics, setPics] = useState([]);
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
+  //const [errorMsg, setErrorMsg] = useState("");
   const [responseMsg, setResponseMsg] = useState("");
 
+
+  //countLike = () => {
+  //  for(let i = 0; i < pic.Likes.length; i++){
+  //    console.log(pic.Likes[i]);
+  //}}
+   
   const fetchPics = async () => {
     const { data } = await Axios.get(`${process.env.REACT_APP_API_URL}pics/all`)
+    setVisible(true)
     setResponseMsg("")
     const allpics = data.allPics;
     setPics(allpics);
@@ -29,6 +49,7 @@ export default function Pics() {
       await Axios.post(`${process.env.REACT_APP_API_URL}pics/search`, { "location": location, "description": description })
       .then((response) => { 
         setResponseMsg(response.data.message)
+        setVisible(false)
         const { data } = response
         const allpics = data
         setPics(allpics)   
@@ -51,24 +72,52 @@ export default function Pics() {
         <div className="album">
           {(allpics && allpics.length > 0) && allpics.map((pic) => (
             <div className="polaroid" key={pic.id}>
-
-                <div className="cover">
-                  <img className="pic" src={pic.picUrl} alt={pic.location}/>
-                </div>
-                
+              <img className="pic" src={pic.picUrl} alt={pic.location}/>
                 <div className="inlinepics">
-                    <Link to={`/pic/${pic.id}`}><img className='navIcon' src={info} alt="plus d'infos"/></Link>
+                  { disabled && visible && <img className='navIcondisabled' src={ like } alt="like"></img> }
+                  { disabled || visible &&
+                  <div>
+                    <img className='navIcon' src={ like } alt="like" onClick={(e) => {
+                      e.preventDefault(); 
+                      Axios.post(`${process.env.REACT_APP_API_URL}pics/like/${pic.id}`, 
+                        { "UserId": pic.User.id, "picId": pic.id },
+                        { headers: {
+                          "Authorization": 'Bearer ' + token,
+                        },
+                      })
+                      .then(()=> {
+                        fetchPics()
+                      })
+                    }}>
+                    </img>
+                  </div>
+                  }
+                  { visible && 
+                  <div>
+                    { // <p>{ //console.log(pic.Likes) 
+                      //pic.Likes.map((like) => (
+                      //  console.log(like.UserId)
+                      //))
+                      //}
+                      //</p> 
+                    }
+                    <p>{pic.Likes.length}</p>
+                  </div>
+                  }
+                  { visible ||
+                    <Link to="/"><img className='navIcon' src={info} alt="plus d'infos"/></Link>
+                  }
                 </div>
-                
                 <p className="location">{pic.location}</p>
                 <p className="description">{pic.description}</p>
-                { /* <div className="inlinepics">
+                <div className="inlinepics">
                   <p className="username">{pic.User.username}</p>
                   <img className="useravatar" src={pic.User.avatar} alt={pic.User.username}/>
-                </div> */ }
+                </div>
             </div>
           ))}
         </div>
       </div>
     ) 
 }
+*/

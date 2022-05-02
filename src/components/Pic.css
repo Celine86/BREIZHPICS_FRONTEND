@@ -1,0 +1,15 @@
+.picture {
+    margin: auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    background: whitesmoke;
+    color: black;
+}
+
+.onepic {
+    margin: auto;
+    width: 100%;
+    height: auto;
+}

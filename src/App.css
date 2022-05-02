@@ -45,13 +45,20 @@
   margin: 1rem auto;
   padding: 0rem 0.5rem;
 }
-img {
+/*img {
   width: 90%;
   height: auto;
   padding: 0rem 0.5rem;
   color: red;
   font-style: italic;
   font-size:medium;
+}*/
+.imghome {
+  width: 90%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .inline {
   margin: auto;

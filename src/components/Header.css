@@ -16,6 +16,7 @@ a {
 .navIcon {
     width: 1.5rem;
     height: 1.5rem;
+    padding: 0rem 0.5rem;
 }
 .navIcon:hover {
     cursor: pointer;
