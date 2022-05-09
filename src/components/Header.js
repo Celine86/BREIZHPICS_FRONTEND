@@ -15,8 +15,8 @@ export default function Header () {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if( localStorage.getItem("username") !== null ) {
-            Axios.get(`${process.env.REACT_APP_API_URL}users/profils/` + localStorage.getItem("userId"), { headers: {"Authorization": "Bearer " + localStorage.getItem("token")} })
+        if( sessionStorage.getItem("username") !== null ) {
+            Axios.get(`${process.env.REACT_APP_API_URL}users/profils/` + sessionStorage.getItem("userId"), { headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")} })
             .then((response) => {
                 setUsername(response.data.userInfos.username);
                 setVisible(true);
@@ -25,10 +25,10 @@ export default function Header () {
     });
     
     const logout = (() => {
-        localStorage.removeItem("token")
-        localStorage.removeItem("userId")
-        localStorage.removeItem("username")
-        localStorage.removeItem("email")
+        sessionStorage.removeItem("token")
+        sessionStorage.removeItem("userId")
+        sessionStorage.removeItem("username")
+        sessionStorage.removeItem("email")
         navigate("/");
         window.location.reload();
     });

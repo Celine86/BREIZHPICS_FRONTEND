@@ -22,10 +22,10 @@ export default function Login() {
             })
             .then((response) => {
                 console.log(response.data)
-                localStorage.setItem("token", response.data.token)
-                localStorage.setItem("userId",response.data.userId)
-                localStorage.setItem("username", response.data.username)
-                localStorage.setItem("email", response.data.email)
+                sessionStorage.setItem("token", response.data.token)
+                sessionStorage.setItem("userId",response.data.userId)
+                sessionStorage.setItem("username", response.data.username)
+                sessionStorage.setItem("email", response.data.email)
                 setLoginStatusMsg(response.data.message)
                 setTimeout(() => {navigate("/pics"); }, 2000);
             })

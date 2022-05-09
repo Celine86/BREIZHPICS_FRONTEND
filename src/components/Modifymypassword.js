@@ -13,7 +13,7 @@ export default function Modifymypassword() {
   const [password, setNewPassword] = useState("");
   const [verifypassword, setNewVerifyPassword] = useState("");
 
-  const token = localStorage.getItem('token')
+  const token = sessionStorage.getItem('token')
   const [modifyStatusMsg, setModifyStatusMsg] = useState("");
   const [modifyStatusError, setModifyStatusError] = useState("");
   const [visible, setVisible] = useState(false);

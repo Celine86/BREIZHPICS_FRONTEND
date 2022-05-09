@@ -13,8 +13,8 @@ export default function Myprofil() {
     const [userbio, setUserbio] = useState("");
 
     useEffect(() => {
-        if( localStorage.getItem("username") !== null ) {
-            Axios.get(`${process.env.REACT_APP_API_URL}users/profils/` + localStorage.getItem("userId"), { headers: {Authorization: "Bearer " + localStorage.getItem("token")} })
+        if( sessionStorage.getItem("username") !== null ) {
+            Axios.get(`${process.env.REACT_APP_API_URL}users/profils/` + sessionStorage.getItem("userId"), { headers: {Authorization: "Bearer " + sessionStorage.getItem("token")} })
             .then((response) => {
                 setUsername(response.data.userInfos.username);
                 setUserpicture(response.data.userInfos.avatar);
@@ -31,25 +31,25 @@ export default function Myprofil() {
                 <div className ="heightcenter">
                     <div className='inline'>
                         <img className="avatar" alt="mon avatar" src={ userpicture }/>
-                        <Link className="bottom" to={{ pathname: `/myprofil/modify/account/${localStorage.getItem("userId")}` }}><img className='navIcon' src={modify} alt="modify"/></Link>                    
+                        <Link className="bottom" to={{ pathname: `/myprofil/modify/account/${sessionStorage.getItem("userId")}` }}><img className='navIcon' src={modify} alt="modify"/></Link>                    
                     </div>
                 </div>
                 <div className="heightcenter">
                     <div className="inline">
                         <h4>{ username }</h4>
-                        <Link to={{ pathname: `/myprofil/modify/account/${localStorage.getItem("userId")}` }}><img className='navIcon' src={modify} alt="modify"/></Link>
+                        <Link to={{ pathname: `/myprofil/modify/account/${sessionStorage.getItem("userId")}` }}><img className='navIcon' src={modify} alt="modify"/></Link>
                     </div>
                     <div className="inline">
                         <p className="bio">{ userbio }</p>
-                        <Link to={{ pathname: `/myprofil/modify/account/${localStorage.getItem("userId")}` }}><img className='navIcon' src={modify} alt="modify"/></Link>
+                        <Link to={{ pathname: `/myprofil/modify/account/${sessionStorage.getItem("userId")}` }}><img className='navIcon' src={modify} alt="modify"/></Link>
                     </div>
                     <div className="inline">
                         <h4>{ useremail }</h4>
-                        <Link to={{ pathname: `/myprofil/modify/email/${localStorage.getItem("userId")}` }}><img className='navIcon' src={modify} alt="modify"/></Link>
+                        <Link to={{ pathname: `/myprofil/modify/email/${sessionStorage.getItem("userId")}` }}><img className='navIcon' src={modify} alt="modify"/></Link>
                     </div>
                     <div className="inline">
                         <h4>************</h4>
-                        <Link to={{ pathname: `/myprofil/modify/pswd/${localStorage.getItem("userId")}` }}><img className='navIcon' src={modify} alt="modify"/></Link>
+                        <Link to={{ pathname: `/myprofil/modify/pswd/${sessionStorage.getItem("userId")}` }}><img className='navIcon' src={modify} alt="modify"/></Link>
                     </div>
                 </div>
             </div>

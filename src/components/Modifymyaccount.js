@@ -19,14 +19,14 @@ export default function Modifymyaccount() {
   const [imageUrl, setImageUrl] = useState(null);
   const [userAvatar, setUserAvatar] = useState(false);
 
-  const token = localStorage.getItem('token')
+  const token = sessionStorage.getItem('token')
   const [modifyStatusMsg, setModifyStatusMsg] = useState("");
   const [modifyStatusError, setModifyStatusError] = useState("");
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if( localStorage.getItem("username") !== null ) {
-        Axios.get(`${process.env.REACT_APP_API_URL}users/profils/` + localStorage.getItem("userId"), { headers: {Authorization: "Bearer " + localStorage.getItem("token")} })
+    if( sessionStorage.getItem("username") !== null ) {
+        Axios.get(`${process.env.REACT_APP_API_URL}users/profils/` + sessionStorage.getItem("userId"), { headers: {Authorization: "Bearer " + sessionStorage.getItem("token")} })
         .then((response) => {
             setUserpicture(response.data.userInfos.avatar);
             setUserusername(response.data.userInfos.username);

@@ -31,9 +31,9 @@ export default function Signup() {
                         password: password,
                     })
                     .then((response) => {
-                        localStorage.setItem("token", response.data.token)
-                        localStorage.setItem("userId",response.data.userId)
-                        localStorage.setItem("username", response.data.username)
+                        sessionStorage.setItem("token", response.data.token)
+                        sessionStorage.setItem("userId",response.data.userId)
+                        sessionStorage.setItem("username", response.data.username)
                         setSignupMsg(response.data.message)
                         setTimeout(() => {navigate("/myprofil"); }, 2000);
                     }) 
