@@ -42,12 +42,12 @@
     border-radius: 50%;
     align-self: center;
 }
-.inlinepics {
+/* .inlinepics {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: right;
-}
+}*/
 .navIcon {
     width: 1.5rem;
     height: 1.5rem;

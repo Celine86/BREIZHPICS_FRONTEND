@@ -3,13 +3,40 @@
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 40%;
     background: whitesmoke;
     color: black;
 }
-
 .onepic {
     margin: auto;
     width: 100%;
     height: auto;
+}
+.btn-pic{
+    font-size: 0.95rem;
+    background-color: #fff;
+    width: 5rem;
+    border-radius: 0rem;
+    margin: 2rem 0.25rem 0rem 0.25rem;
+    padding: 0.5rem;
+    cursor:pointer;
+}
+.btn-pic:hover{
+    font-size: 0.95rem;
+    background-color: #000;
+    color: #fff;
+    width: 5rem;
+    border-radius: 0rem;
+    margin: 2rem 0.25rem 0rem 0.25rem;
+    padding: 0.5rem;
+    cursor:pointer;
+}
+.btn-pic--yn{
+    font-size: 0.95rem;
+    background-color: #fff;
+    width: 2.5rem;
+    border-radius: 2.5rem;
+    margin: 0rem 0.5rem;
+    padding: 0rem;
+    cursor:pointer;
 }

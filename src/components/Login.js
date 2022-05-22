@@ -26,6 +26,7 @@ export default function Login() {
                 sessionStorage.setItem("userId",response.data.userId)
                 sessionStorage.setItem("username", response.data.username)
                 sessionStorage.setItem("email", response.data.email)
+                sessionStorage.setItem("role", response.data.role)
                 setLoginStatusMsg(response.data.message)
                 setTimeout(() => {navigate("/pics"); }, 2000);
             })

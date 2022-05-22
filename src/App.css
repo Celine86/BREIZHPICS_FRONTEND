@@ -67,6 +67,15 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+.inlinepics {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: right;
+}
+.inlinebutton {
+  margin: auto;
+}
 .bottom {
   display: flex;
   flex-direction: column;
