@@ -39,7 +39,7 @@ export default function HandlePic() {
         <label>Localisation</label>
         <input type="text" placeholder="localisation" name="localisation" onChange={(e) => {setLocalisation(e.target.value); }}/>
         <label>Description</label>
-        <textarea rows="4" cols="30" maxLenght="250" onChange={(e) => {setDescription(e.target.value); }}/>
+        <textarea rows="4" cols="30" maxLength="250" onChange={(e) => {setDescription(e.target.value); }}/>
         <label htmlFor="filePicker" className='btn'>Choisir une photo</label>
         <input id="filePicker" type="file" style={{display:'none'}} onInput={(e) => {setImgPreview(true)} } onChange={(e) => { setPicture(e.target.files[0]) }}></input>
         {imgpreview && <img alt="toto" src={preview} /> }      

@@ -21,7 +21,7 @@ export default function Login() {
                 password: password,
             })
             .then((response) => {
-                console.log(response.data)
+                //console.log(response.data)
                 sessionStorage.setItem("token", response.data.token)
                 sessionStorage.setItem("userId",response.data.userId)
                 sessionStorage.setItem("username", response.data.username)

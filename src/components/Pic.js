@@ -11,18 +11,8 @@ export default function Pic() {
   const { id } = useParams();
   const token = sessionStorage.getItem('token');
 
-  const [loggedin, setLoggedIn] = useState(false);
   const [canchange, setCanChange] = useState(false);
   const [deleteThisPic, setDeleteThisPic] = useState(false);
-
-  useEffect(() => {
-    if(sessionStorage.getItem("username") === null){
-      setLoggedIn(false);
-    } else {
-      setLoggedIn(true);
-    }
-  }, [])
-
 
   const [location, setLocation] = useState();
   const [description, setDescription] = useState();
@@ -33,27 +23,27 @@ export default function Pic() {
   //const [userId, setUserID] = useState();
   const [likes, setLikes] = useState();
   //const [userlikes, setUserLikes] = useState(false);
+  const [picexist, setPicExist] = useState();
 
   const fetchPic = async () => {
     const { data } = await Axios.get(`${process.env.REACT_APP_API_URL}pics/all/${id}`, { headers: {Authorization: "Bearer " + sessionStorage.getItem("token")} })
-      setLocation(data.location);
-      setDescription(data.description);
-      setPicUrl(data.picUrl);
-      setAuthorName(data.User.username);
-      setAuthorAvatar(data.User.avatar);
-      setAuthorId (data.User.id);
-      setLikes(data.Likes.length);
-
-      //console.log(data.Likes[0].UserId)
-      //https://stackoverflow.com/questions/66396557/vuejs-add-like-and-remove-like-does-not-work
-      //https://lyket.dev/docs/react
-      
-            
-      if(sessionStorage.getItem("userId") === authorId){
-        setCanChange(true);
-      }
-      if(sessionStorage.getItem("role") === "modo"){
-        setCanChange(true);
+      if(data !== null){
+        setPicExist(true);
+        setLocation(data.location);
+        setDescription(data.description);
+        setPicUrl(data.picUrl);
+        setAuthorName(data.User.username);
+        setAuthorAvatar(data.User.avatar);
+        setAuthorId (data.User.id);
+        setLikes(data.Likes.length);            
+        if(sessionStorage.getItem("userId") === authorId){
+          setCanChange(true);
+        }
+        if(sessionStorage.getItem("role") === "modo"){
+          setCanChange(true);
+        }
+      } else {
+        setPicExist(false);
       }
   }
   useEffect(() => {
@@ -64,19 +54,20 @@ export default function Pic() {
     setDeleteThisPic(true);
   }
 
-  // modifyPic : btn visible que si auteur ou modo 
-  // deletePic : btn visible que si auteur ou modo 
+  const confirmdeletePic = async () => {
+    Axios.delete(`${process.env.REACT_APP_API_URL}pics/delete/${id}`, { headers: {Authorization: "Bearer " + sessionStorage.getItem("token")} })
+  }
+
+  const infirmdeletePic = async () => {
+    setDeleteThisPic(false);
+  }
+
   // location : lien avec une API pour afficher géographiquement la carte, cf https://www.openstreetmap.org/copyright
   // like : OK que si connecté ét couleur change si liké --> cf map
 
   return (
   <div>
-    { loggedin || 
-      <div className="card">
-        <h1 className="error">Il faut être connecté pour afficher les détails de la photo </h1>
-      </div>
-    }
-    { loggedin &&
+    {picexist && 
       <div className="picture">
         <img className="onepic" src={picUrl} alt={location}/>
         <div className="inlinepics">
@@ -117,14 +108,19 @@ export default function Pic() {
               { deleteThisPic &&
                 <div className="inline">
                   <p>Supprimer ?</p>
-                  <button className="btn-pic--yn">OUI</button>
-                  <button className="btn-pic--yn">NON</button>
+                  <button onClick={confirmdeletePic} className="btn-pic--yn">OUI</button>
+                  <button onClick={infirmdeletePic} className="btn-pic--yn">NON</button>
                 </div>
               }
             </div>       
           }
       </div>     
     }
+    { /* picexist ||
+      <div className="card">
+        <h1 className="error">Cette photo n'existe pas</h1>
+      </div>      
+    */ }
   </div>
   )
 }

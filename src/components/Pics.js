@@ -13,6 +13,17 @@ export default function Pics() {
   const [description, setDescription] = useState("");
   const [responseMsg, setResponseMsg] = useState("");
 
+  const [isLogged, setIsLogged] = useState()
+  
+  useEffect(() => {
+    if( sessionStorage.getItem("username") !== null ) {
+      setIsLogged(true);
+    } else {
+      setIsLogged(false);
+    }
+  }, [])
+
+
   const fetchPics = async () => {
     const { data } = await Axios.get(`${process.env.REACT_APP_API_URL}pics/all`)
     setResponseMsg("")
@@ -57,7 +68,7 @@ export default function Pics() {
                 </div>
                 
                 <div className="inlinepics">
-                    <Link to={`/pic/${pic.id}`}><img className='navIcon' src={info} alt="plus d'infos"/></Link>
+                    <Link to={isLogged ? `/pic/${pic.id}` : `/notloggedin`}><img className='navIcon' src={info} alt="plus d'infos"/></Link>
                 </div>
                 
                 <p className="location">{pic.location}</p>

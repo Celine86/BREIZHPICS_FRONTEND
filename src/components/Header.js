@@ -29,6 +29,7 @@ export default function Header () {
         sessionStorage.removeItem("userId")
         sessionStorage.removeItem("username")
         sessionStorage.removeItem("email")
+        sessionStorage.removeItem("role")
         navigate("/");
         window.location.reload();
     });
