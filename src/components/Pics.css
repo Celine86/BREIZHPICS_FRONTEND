@@ -42,12 +42,6 @@
     border-radius: 50%;
     align-self: center;
 }
-/* .inlinepics {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: right;
-}*/
 .navIcon {
     width: 1.5rem;
     height: 1.5rem;
@@ -72,9 +66,4 @@
 }
 .searchform--child {
     margin: 1rem 0.5rem;
-}
-.msg{
-    background-color: white;
-    color: green;
-    text-align: center;
 }

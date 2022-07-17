@@ -12,7 +12,6 @@ export default function Pics() {
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [responseMsg, setResponseMsg] = useState("");
-
   const [isLogged, setIsLogged] = useState()
   
   useEffect(() => {
@@ -22,7 +21,6 @@ export default function Pics() {
       setIsLogged(false);
     }
   }, [])
-
 
   const fetchPics = async () => {
     const { data } = await Axios.get(`${process.env.REACT_APP_API_URL}pics/all`)
@@ -50,36 +48,29 @@ export default function Pics() {
     }
   }
 
-    return (
-      <div>
-        <form className="searchform">
-            <img className='navIcon' src={refresh} alt="rafraichir" onClick = { fetchPics }></img>
-            <input className="searchform--child" type="text" name="location" placeholder="chercher par localisation" onChange={(e) => { setLocation(e.target.value); }}></input>
-            <input className="searchform--child" type="text" name="description" placeholder="chercher par mot-clé" onChange={(e) => { setDescription(e.target.value); }}></input>
-            <img className='navIcon' src={search} alt="rechercher" onClick = { searchPics }></img>
-        </form>
-        <h5 className="msg">{ responseMsg }</h5>
-        <div className="album">
-          {(allpics && allpics.length > 0) && allpics.map((pic) => (
-            <div className="polaroid" key={pic.id}>
-
-                <div className="cover">
-                  <img className="pic" src={pic.picUrl} alt={pic.location}/>
-                </div>
-                
-                <div className="inlinepics">
-                    <Link to={isLogged ? `/pic/${pic.id}` : `/notloggedin`}><img className='navIcon' src={info} alt="plus d'infos"/></Link>
-                </div>
-                
-                <p className="location">{pic.location}</p>
-                <p className="description">{pic.description}</p>
-                { /* <div className="inlinepics">
-                  <p className="username">{pic.User.username}</p>
-                  <img className="useravatar" src={pic.User.avatar} alt={pic.User.username}/>
-                </div> */ }
-            </div>
-          ))}
-        </div>
+  return (
+    <div>
+      <form className="searchform">
+          <img className='navIcon' src={refresh} alt="rafraichir" onClick = { fetchPics }></img>
+          <input className="searchform--child" type="text" name="location" placeholder="chercher par localisation" onChange={(e) => { setLocation(e.target.value); }}></input>
+          <input className="searchform--child" type="text" name="description" placeholder="chercher par mot-clé" onChange={(e) => { setDescription(e.target.value); }}></input>
+          <img className='navIcon' src={search} alt="rechercher" onClick = { searchPics }></img>
+      </form>
+      <h5 className="msg">{ responseMsg }</h5>
+      <div className="album">
+        {(allpics && allpics.length > 0) && allpics.map((pic) => (
+          <div className="polaroid" key={pic.id}>
+              <div className="cover">
+                <img className="pic" src={pic.picUrl} alt={pic.location}/>
+              </div>
+              <div className="inlinepics">
+                  <Link to={isLogged ? `/pic/${pic.id}` : `/notloggedin`}><img className='navIcon' src={info} alt="plus d'infos"/></Link>
+              </div>
+              <p className="location">{pic.location}</p>
+              <p className="description">{pic.description}</p>
+          </div>
+        ))}
       </div>
-    ) 
+    </div>
+  ) 
 }

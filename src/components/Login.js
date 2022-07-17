@@ -21,7 +21,6 @@ export default function Login() {
                 password: password,
             })
             .then((response) => {
-                //console.log(response.data)
                 sessionStorage.setItem("token", response.data.token)
                 sessionStorage.setItem("userId",response.data.userId)
                 sessionStorage.setItem("username", response.data.username)
@@ -33,12 +32,12 @@ export default function Login() {
             .catch(error => {
                 setVisible(true);
                 setLoginStatusError(error.response.data.error)
-                setTimeout(() => {window.location.reload() }, 1500);
+                setTimeout(() => {setVisible(false) }, 2000);
             }) 
         } catch(error) {
             setVisible(true);
             setLoginStatusError(error.response.data.message)
-            setTimeout(() => {window.location.reload() }, 1500);
+            setTimeout(() => {setVisible(false) }, 2000);
         }
     }
     
@@ -52,7 +51,7 @@ export default function Login() {
                 <input type="password" placeholder="Mot de passe" onChange={(e) => { setPassword(e.target.value); }}></input>
                 <button onClick={login}>Se Connecter</button>
                 { visible || <h5 className="msg">{loginStatusMsg}</h5> }
-                { visible && <h5 className="error">{loginStatusError}</h5> }
+                { visible && <h5 className="msg">{loginStatusError}</h5> }
             </form>
         </div>
     )

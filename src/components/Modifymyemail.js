@@ -31,13 +31,9 @@ export default function Modifymyemail() {
   const modify = event => {
     event.preventDefault();
 
-        const formData = new FormData()
-        formData.set("email", newuseremail)
-
         Axios.put(`${process.env.REACT_APP_API_URL}users/profils/modifyAccount/email/${id}`, 
-            formData,
+          { email: newuseremail},
           { headers: {
-            'Content-Type': 'multipart/form-data',
             "Authorization": "Bearer " + token 
             }
           }
@@ -49,7 +45,7 @@ export default function Modifymyemail() {
         .catch((error) => { 
           setVisible(true);
           setModifyStatusError(error.response.data.error) 
-          setTimeout(() => {window.location.reload() }, 1500);
+          setTimeout(() => {window.location.reload() }, 2000);
         }) 
   }
 

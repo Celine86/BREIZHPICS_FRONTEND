@@ -7,11 +7,13 @@ import logoutimg from '../img/logout_white.png'
 import profil from '../img/profil_white.png';
 import pics from '../img/pics_white.png';
 import addpic from '../img/addpic_white.png';
+import dashboard from '../img/dashboard_white.png';
 
 export default function Header () {
 
     const [username, setUsername] = useState("");
     const [visible, setVisible] = useState(false);
+    const [dashboardaccess, setDashboardAccess] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,6 +22,12 @@ export default function Header () {
             .then((response) => {
                 setUsername(response.data.userInfos.username);
                 setVisible(true);
+                if(sessionStorage.getItem("role") === "modo"){
+                    setDashboardAccess(true);
+                }
+                if(sessionStorage.getItem("role") === "admin"){
+                    setDashboardAccess(true);
+                }
             })
         }
     });
@@ -42,7 +50,6 @@ export default function Header () {
         }
     })
 
-
     return (
         <div className="header">
             <h1>BREIZHPICS</h1>
@@ -50,7 +57,8 @@ export default function Header () {
             { visible || <div><Link to="/login">Se Connecter</Link> | <Link to="/signup">S'inscrire</Link></div> }
             <div className="inline">
                 <div><Link to="/"><img className='navIcon' src={home} alt="home"/></Link>|<img className='navIcon' src={pics} onClick={ goToPics } alt="naviguer"/></div>
-                { visible && <div>||<Link to="/pic/handle"><img className='navIcon' src={addpic} alt="mon profil"/></Link>|<Link to="/myprofil"><img className='navIcon' src={profil} alt="mon profil"/></Link>|<img className='navIcon' src={ logoutimg } onClick={ logout } alt="logout"/></div> }
+                { visible && <div>||<Link to="/pic/postpic"><img className='navIcon' src={addpic} alt="créer un poste"/></Link>|<Link to="/myprofil"><img className='navIcon' src={profil} alt="mon profil"/></Link>|<img className='navIcon' src={ logoutimg } onClick={ logout } alt="logout"/></div> }
+                { dashboardaccess && <div>||<Link to="/dashboard"><img className='navIcon' src={dashboard} alt="mon profil"/></Link></div>}
             </div>            
         </div>
     )

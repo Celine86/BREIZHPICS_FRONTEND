@@ -7,12 +7,9 @@ import '../App.css';
 export default function Modifymypassword() {
 
   const { id } = useParams();
-
   const navigate = useNavigate();
-
   const [password, setNewPassword] = useState("");
   const [verifypassword, setNewVerifyPassword] = useState("");
-
   const token = sessionStorage.getItem('token')
   const [modifyStatusMsg, setModifyStatusMsg] = useState("");
   const [modifyStatusError, setModifyStatusError] = useState("");
@@ -20,13 +17,11 @@ export default function Modifymypassword() {
 
   const modify = event => {
     event.preventDefault();
-
         const formData = new FormData()
         formData.set("password", password)
         formData.set("verifyPassword", verifypassword)
-
         Axios.put(`${process.env.REACT_APP_API_URL}users/profils/modifyAccount/pswd/${id}`, 
-            formData,
+          formData,
           { headers: {
             'Content-Type': 'multipart/form-data',
             "Authorization": "Bearer " + token 

@@ -5,7 +5,7 @@ export default function PrivateRoute() {
     let userid = sessionStorage.getItem("userId") == null ? false : true;
     return (
         <>
-            {userid ? <Outlet  /> : <Navigate to="/notloggedin" />};
+            {userid ? <Outlet  /> : <Navigate to="/notloggedin" />}
         </>
     )
 }

@@ -20,6 +20,7 @@
     margin: 2rem 0.25rem 0rem 0.25rem;
     padding: 0.5rem;
     cursor:pointer;
+    border-radius: 5rem;
 }
 .btn-pic:hover{
     font-size: 0.95rem;
@@ -30,6 +31,7 @@
     margin: 2rem 0.25rem 0rem 0.25rem;
     padding: 0.5rem;
     cursor:pointer;
+    border-radius: 5rem;
 }
 .btn-pic--yn{
     font-size: 0.95rem;
@@ -39,4 +41,26 @@
     margin: 0rem 0.5rem;
     padding: 0rem;
     cursor:pointer;
+}
+.picIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 1rem 0rem;
+}
+.picIcon:hover {
+    cursor: pointer;
+}
+.reportmsg {
+    margin: 0.5rem 0rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: left;  
+}
+.reportform {
+    margin: 0rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: left;     
 }

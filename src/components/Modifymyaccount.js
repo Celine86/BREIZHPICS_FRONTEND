@@ -7,9 +7,7 @@ import './Myprofil.css';
 export default function Modifymyaccount() {
 
   const { id } = useParams();
-
   const navigate = useNavigate();
-
   const [userpicture, setUserpicture] = useState("");
   const [newuserpicture, setNewUserpicture] = useState("");
   const [userusername, setUserusername] = useState("");
@@ -18,7 +16,6 @@ export default function Modifymyaccount() {
   const [newuserbio, setNewUserbio] = useState("");
   const [imageUrl, setImageUrl] = useState(null);
   const [userAvatar, setUserAvatar] = useState(false);
-
   const token = sessionStorage.getItem('token')
   const [modifyStatusMsg, setModifyStatusMsg] = useState("");
   const [modifyStatusError, setModifyStatusError] = useState("");

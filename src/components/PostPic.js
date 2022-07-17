@@ -1,16 +1,20 @@
 import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 
-export default function HandlePic() {
+export default function PostPic() {
 
-  const token = localStorage.getItem('token')
-
+  const token = sessionStorage.getItem('token')
   const [localisation, setLocalisation] = useState("");
   const [description, setDescription] = useState("");
   const [picture, setPicture] = useState("");
   const [preview, setPreview] = useState(null);
   const [imgpreview, setImgPreview] = useState(false);
+  const [loginStatusMsg, setLoginStatusMsg] = useState("");
+  const [loginStatusError, setLoginStatusError] = useState("");
+  const [visible, setVisible] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (picture) {
@@ -26,10 +30,13 @@ export default function HandlePic() {
     formData.set("description", description)
     Axios.post(`${process.env.REACT_APP_API_URL}pics/create`, formData, { headers: {'Content-Type': 'multipart/form-data',"Authorization": "Bearer " + token }})
     .then((response) =>{
-      console.log(response)
+      setLoginStatusMsg(response.data.message)
+      setTimeout(() => {navigate("/pics"); }, 2000);
     })
     .catch((error) => {
-      console.log(error)
+      setVisible(true);
+      setLoginStatusError(error.response.data.message)
+      setTimeout(() => {setVisible(false) }, 2000);
     })
   }
 
@@ -42,8 +49,10 @@ export default function HandlePic() {
         <textarea rows="4" cols="30" maxLength="250" onChange={(e) => {setDescription(e.target.value); }}/>
         <label htmlFor="filePicker" className='btn'>Choisir une photo</label>
         <input id="filePicker" type="file" style={{display:'none'}} onInput={(e) => {setImgPreview(true)} } onChange={(e) => { setPicture(e.target.files[0]) }}></input>
-        {imgpreview && <img alt="toto" src={preview} /> }      
+        {imgpreview && <img alt="breozhpic" width="100%" heigth="auto" src={preview} /> }      
         <button onClick={ createPic }>Enregistrer</button>
+        { visible || <h5 className="msg">{loginStatusMsg}</h5> }
+        { visible && <h5 className="error">{loginStatusError}</h5> }
       </form>
     </div>
   )

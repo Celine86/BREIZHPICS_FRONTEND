@@ -42,12 +42,12 @@ export default function Signup() {
             .catch(error => {
                 setVisible(true);
                 setSignupError(error.response.data.error);
-                setTimeout(() => {window.location.reload() }, 2000);
+                setTimeout(() => {setVisible(false) }, 2000);
             }) 
         } catch (error) {
             setVisible(true);
             setSignupError(error.response.data.error);
-            setTimeout(() => {window.location.reload() }, 2000);
+            setTimeout(() => {setVisible(false) }, 2000);
         }
     }
 
