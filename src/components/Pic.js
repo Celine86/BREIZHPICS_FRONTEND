@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import Axios from "axios";
 import './Pic.css';
 import './Pics.css';
@@ -9,6 +9,7 @@ import like from '../img/like_black.png';
 export default function Pic() {
 
   const { id } = useParams();
+  const navigate = useNavigate();
   const token = sessionStorage.getItem('token');
   const [canchange, setCanChange] = useState(false);
   const [deleteThisPic, setDeleteThisPic] = useState(false);
@@ -21,6 +22,9 @@ export default function Pic() {
   const [authorId, setAuthorId] = useState();
   const [likes, setLikes] = useState();
   const [picexist, setPicExist] = useState();
+  //const [InfoMsg, setInfoMsg] = useState("");
+  //const [ErrorMsg, setErrorMsg] = useState("");
+  //const [visible, setVisible] = useState(false);
 
   const fetchPic = async () => {
     const { data } = await Axios.get(`${process.env.REACT_APP_API_URL}pics/all/${id}`, { headers: {Authorization: "Bearer " + sessionStorage.getItem("token")} })
@@ -59,11 +63,20 @@ export default function Pic() {
   const deletePic = async () => {
     setDeleteThisPic(true);
   }
-
   const confirmdeletePic = async () => {
-    Axios.delete(`${process.env.REACT_APP_API_URL}pics/delete/${id}`, { headers: {Authorization: "Bearer " + sessionStorage.getItem("token")} })
+    await Axios.delete(`${process.env.REACT_APP_API_URL}pics/delete/${id}`, { headers: {Authorization: "Bearer " + sessionStorage.getItem("token")} })
+    .then((response) => {
+      console.log(response.data.message)
+      //setInfoMsg(response.data.message);
+      setTimeout(() => {navigate("/pics"); }, 2000);      
+    }) 
+    .catch((error) => { 
+      console.log(error.response.data.error)
+      //setVisible(true);
+      //setErrorMsg(error.response.data.error) 
+      //setTimeout(() => {window.location.reload() }, 1500);
+    })
   }
-
   const infirmdeletePic = () => {
     setDeleteThisPic(false);
   }
@@ -72,15 +85,14 @@ export default function Pic() {
   const reportPic = async () => {
     setReportThisPic(true);
   }
-
   const confirmreportPic = async () => {
     console.log("report Pic")
   }
-
   const infirmreportPic = () => {
     setReportThisPic(false)
   }
   */
+
 
   return (
   <div>
@@ -104,6 +116,8 @@ export default function Pic() {
         <div>
           <h1>{location} </h1>
           <p>{description} </p>
+          { /*visible || <h5 className="msg">{InfoMsg}</h5>*/ }
+          { /*visible && <h5 className="error">{ErrorMsg}</h5>*/ }
         </div>
         { /*}
         <div className="reportmsg">
@@ -124,7 +138,7 @@ export default function Pic() {
           { canchange &&
             <div>
               <div className="inlinebutton">
-                <button className="btn-pic">Modifier</button>
+                <Link to={`/modifypic/${id}`}><button className="btn-pic">Modifier</button></Link>
                 <button onClick={deletePic} className="btn-pic">Supprimer</button>
               </div>
               { deleteThisPic &&
@@ -136,7 +150,7 @@ export default function Pic() {
               }
             </div>       
           }
-      </div>     
+      </div>  
     }
   </div>
   )

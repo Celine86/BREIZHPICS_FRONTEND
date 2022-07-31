@@ -96,11 +96,11 @@
 }
 .msg{
   color: green;
-  background-color: rgba(233, 230, 230, 0.95)
+  background-color: rgba(233, 230, 230, 0)
 }
 .error{
   color: red;
-  background-color: rgba(233, 230, 230, 0.95)
+  background-color: rgba(233, 230, 230, 0)
 }
 .msginfo{
   color: black;

@@ -49,7 +49,7 @@ export default function PostPic() {
         <textarea rows="4" cols="30" maxLength="250" onChange={(e) => {setDescription(e.target.value); }}/>
         <label htmlFor="filePicker" className='btn'>Choisir une photo</label>
         <input id="filePicker" type="file" style={{display:'none'}} onInput={(e) => {setImgPreview(true)} } onChange={(e) => { setPicture(e.target.files[0]) }}></input>
-        {imgpreview && <img alt="breozhpic" width="100%" heigth="auto" src={preview} /> }      
+        {imgpreview && <img alt="breizhpic" width="100%" heigth="auto" src={preview} /> }      
         <button onClick={ createPic }>Enregistrer</button>
         { visible || <h5 className="msg">{loginStatusMsg}</h5> }
         { visible && <h5 className="error">{loginStatusError}</h5> }

@@ -16,8 +16,9 @@ import Footer from './components/Footer'
 import NotLoggedIn from './components/NotLoggedIn'
 import NotAllowed from './components/NotAllowed'
 import Dashboard from './components/Dashboard'
-import PicsToValidate from './components/PicsToValidate'
-import ReportedPics from './components/ReportedPics'
+//import PicsToValidate from './components/PicsToValidate'
+//import ReportedPics from './components/ReportedPics'
+import ModifyPic from './components/ModifyPic'
 import PrivateRoute from './components/PrivateRoute'
 
 
@@ -43,8 +44,9 @@ function App() {
             <Route exact path="/myprofil/modify/pswd/:id" element={<Modifymypassword />}/>
             <Route exact path="/myprofil/modify/account/:id" element={<Modifymyaccount />}/>
             <Route exact path='/dashboard' element={<Dashboard />}/>
-            <Route exact path='/dashboard/picstovalidate' element={<PicsToValidate />}/>
-            <Route exact path='/dashboard/reportedpics' element={<ReportedPics />}/>
+            <Route exact path="/modifypic/:id" element={<ModifyPic />}/>
+            { /* <Route exact path='/dashboard/picstovalidate' element={<PicsToValidate />}/>
+            <Route exact path='/dashboard/reportedpics' element={<ReportedPics />}/> */ }
             <Route exact path="/notallowed" element={<NotAllowed />}/>
           </Route>
         </Routes>

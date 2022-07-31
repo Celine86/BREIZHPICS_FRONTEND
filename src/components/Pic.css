@@ -16,7 +16,6 @@
     font-size: 0.95rem;
     background-color: #fff;
     width: 5rem;
-    border-radius: 0rem;
     margin: 2rem 0.25rem 0rem 0.25rem;
     padding: 0.5rem;
     cursor:pointer;
@@ -27,7 +26,6 @@
     background-color: #000;
     color: #fff;
     width: 5rem;
-    border-radius: 0rem;
     margin: 2rem 0.25rem 0rem 0.25rem;
     padding: 0.5rem;
     cursor:pointer;
